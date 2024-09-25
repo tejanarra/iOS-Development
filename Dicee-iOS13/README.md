@@ -10,7 +10,6 @@ I created a Las Vegas dice app. I can make the die roll at the press of a button
 
 ## What I Learned
 
-* How to clone an existing Xcode project from GitHub.
 * How to create an app with behavior and functionality.
 * How to create links between the Interface Builder files and code using IBActions and IBOutlets.
 * How to get familiar with the Xcode code editor.
