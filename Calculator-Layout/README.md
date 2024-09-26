@@ -1,27 +1,65 @@
-![App Brewery Banner](Documentation/AppBreweryBanner.png)
-
 # Calculator Layout Boss Challenge
 
-No knowledge is your own until you put it into practice. Using what you've learnt about auto layout, stack views and setting constraints, create the following UI. 
+## Overview
 
-## Portrait
+This project implements a calculator UI using Auto Layout and Stack Views in both portrait and landscape orientations. The challenge was to create a responsive layout that adheres to specific design requirements while utilizing constraints effectively.
+
+## Features
+
+- **Portrait and Landscape Support:** The calculator UI adjusts dynamically based on the device orientation.
+- **Safe Area Constraints:** The layout is constrained to the safe areas, ensuring proper spacing from the edges of the screen.
+- **Button Layout:** The "0" button is designed to take up twice the width of the "." and "=" buttons.
+- **Label Indentation:** The label displaying the current input has a 20px distance from the right edge of the screen.
+
+## Layout Details
+
+### Portrait Mode
+
+In portrait mode, the UI features:
+- A vertical stack view containing the display label at the top.
+- A series of horizontal stack views for number and operator buttons, organized for easy access.
+
+### Landscape Mode
+
+In landscape mode, the UI adjusts:
+- The display label and buttons rearrange themselves to maintain usability and aesthetics while using available horizontal space.
+
+## Implementation Steps
+
+1. **Setup Auto Layout:**
+   - Used vertical and horizontal stack views to structure the layout.
+   - Applied constraints to ensure the UI is responsive to screen size and orientation.
+
+2. **Safe Area Constraints:**
+   - Used the safe area layout guides to ensure the UI respects the device's edges.
+
+3. **Button Width Adjustments:**
+   - Set the "0" button's width to be twice that of the "." and "=" buttons using layout constraints.
+
+4. **Label Indentation:**
+   - Applied right padding to the label to maintain a 20px distance from the right edge.
+
+## Technologies Used
+
+- **Swift**
+- **UIKit**
+- **Auto Layout**
+- **Xcode**
+
+## Screenshots
+
+### Portrait Mode
 
 ![Portrait](Documentation/Portrait.png)
 
-## Landscape
+### Landscape Mode
+
 ![Landscape](Documentation/Landscape.png)
 
-This is a difficult challenge. You pass the challenge if you can create the vertical and horizontal stacks required for the layout. Once you've done that, you can also get extra credit if you figure out how to layout the small details.
+## Conclusion
 
-Bronze Medal: If you can figure out how to have the layout be constrained to the Safe Areas in Portrait and Landscape. (Notice the distance to the edges is different between landscape and portrait.
+This challenge successfully demonstrates the use of Auto Layout and Stack Views to create a responsive calculator UI. The implementation considers user experience by maintaining an organized layout across different orientations. 
 
-Silver Medal: If you can figure out how to indent the Label with the 0 so that there is 20px distance from the right edge of the screen.
+## Acknowledgements
 
-Gold Medal: If you can figure out how to make the 0 button take up twice as much width as the "." and "=" buttons.
-
-If you get stuck, check out the solution video in the next lesson.
-
->This is a companion project to The App Brewery's Complete App Development Bootcamp, check out the full course at [www.appbrewery.co](https://www.appbrewery.co/)
-
-![End Banner](Documentation/readme-end-banner.png)
-
+This project is a part of The App Brewery's Complete App Development Bootcamp. For more information, visit [www.appbrewery.co](https://www.appbrewery.co).
