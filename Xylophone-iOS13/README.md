@@ -40,5 +40,5 @@ The **Xylophone App** is a colorful musical instrument app built for iOS, where 
 
 ## Screenshots
 
-![Xylophone App Screenshot](/Screenshot - iPhone 16 Plus - 2024-09-26 at 20.56.07.png)
+![Xylophone App Screenshot](/Screenshot_iPhone_16_Plus_2024-09-26_at_20.56.07.png)
 *Xylophone app running on iPhone 16 Plus*
