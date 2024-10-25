@@ -7,18 +7,22 @@
 //
 
 import UIKit
-import CoreData
+import RealmSwift
 
 class CategoryViewController: UITableViewController {
     
-    var categories:[Category] = []
+    var categories:Results<Category>?
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let realm = try! Realm()
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadData() // Reload data every time the view appears
+    }
     
     //MARK: - AddItems
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
@@ -32,11 +36,10 @@ class CategoryViewController: UITableViewController {
         let action = UIAlertAction(title: "Add", style: .default) { [self] (action) in
             if let text = textFieldLocal.text {
                 if !text.isEmpty {
-                    let newCategory = Category(context: context)
+                    let newCategory = Category()
                     newCategory.categoryName = text
-                    self.categories.append(newCategory)
                     
-                    saveToPlist()
+                    save(category: newCategory)
                     loadData()
                     
                     self.tableView.reloadData()
@@ -50,38 +53,37 @@ class CategoryViewController: UITableViewController {
     
     //MARK: - Save and Retrieving Data to Plist
     
-    func saveToPlist() {
+    func save(category: Category) {
         do{
-            try context.save()
+            try realm.write{
+                realm.add(category)
+            }
+            
         }catch{
             print(error)
         }
     }
     
-    func loadData(with request: NSFetchRequest<Category> = Category.fetchRequest()){
+    func loadData(){
         
-        do{
-            categories = try context.fetch(request)
-        }catch{
-            print(error)
-        }
+        categories = realm.objects(Category.self).sorted(byKeyPath: "dateCreated", ascending: true)
         tableView.reloadData()
     }
-    
-    
     
     //MARK: - Table View Methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories.count
+        return categories?.count ?? 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
-        let category = categories[indexPath.row]
-        cell.textLabel?.text = category.categoryName
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as! CustomCategoryCell
+        let category = categories?[indexPath.row]
+        let count = category?.items.count ?? 0
+//        cell.textLabel?.text = "\(category?.categoryName ?? "No Category") (\(count))"
+        cell.name.text = category?.categoryName ?? "No Category"
+        cell.count.text = "\(count)"
         return cell
-        
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -94,7 +96,7 @@ class CategoryViewController: UITableViewController {
             let destinationVC = segue.destination as! ToDoListController
             
             if let indexPath = tableView.indexPathForSelectedRow{
-                destinationVC.selectedCategory = categories[indexPath.row]
+                destinationVC.selectedCategory = categories?[indexPath.row]
             }
         }
     }
@@ -102,38 +104,25 @@ class CategoryViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Fetch the category to be deleted
-            let categoryToDelete = categories[indexPath.row]
-
-            // Create a fetch request for related items
-            let fetchRequest: NSFetchRequest<Item> = Item.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "parentCategory == %@", categoryToDelete)
-
-            do {
-                // Fetch related items
-                let itemsToDelete = try context.fetch(fetchRequest)
-                // Delete each related item
-                for item in itemsToDelete {
-                    context.delete(item)
+            if let categoryToDelete = categories?[indexPath.row]{
+                do {
+                    try realm.write {
+                        realm.delete(categoryToDelete.items)
+                        realm.delete(categoryToDelete)
+                    }
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                    
+                } catch {
+                    print("Error fetching items: \(error)")
                 }
-                // Delete the category
-                context.delete(categoryToDelete)
-
-                // Remove from local array and update UI
-                categories.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .fade)
-
-                // Save context
-                saveToPlist()
-            } catch {
-                print("Error fetching items: \(error)")
             }
         }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return 75 //or whatever you need
+        return 75
     }
-
+    
     
 }
