@@ -80,7 +80,7 @@ class CategoryViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as! CustomCategoryCell
         let category = categories?[indexPath.row]
         let count = category?.items.count ?? 0
-//        cell.textLabel?.text = "\(category?.categoryName ?? "No Category") (\(count))"
+        //        cell.textLabel?.text = "\(category?.categoryName ?? "No Category") (\(count))"
         cell.name.text = category?.categoryName ?? "No Category"
         cell.count.text = "\(count)"
         return cell
@@ -101,20 +101,18 @@ class CategoryViewController: UITableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Fetch the category to be deleted
-            if let categoryToDelete = categories?[indexPath.row]{
-                do {
-                    try realm.write {
-                        realm.delete(categoryToDelete.items)
-                        realm.delete(categoryToDelete)
-                    }
-                    tableView.deleteRows(at: [indexPath], with: .fade)
-                    
-                } catch {
-                    print("Error fetching items: \(error)")
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
+        
+        if let categoryToDelete = categories?[indexPath.row]{
+            do {
+                try realm.write {
+                    realm.delete(categoryToDelete.items)
+                    realm.delete(categoryToDelete)
                 }
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                
+            } catch {
+                print("Error fetching items: \(error)")
             }
         }
     }
