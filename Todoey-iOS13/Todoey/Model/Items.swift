@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Items: Codable{
+struct ItemsNotinUse: Codable{
     var itemName: String
     var isCompleted: Bool
 }
