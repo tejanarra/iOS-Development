@@ -1,7 +1,11 @@
 import UIKit
+import SwiftUICore
 import RealmSwift
+import RandomColor
+
 
 class ToDoListController: UITableViewController{
+    let darkPinkColors = randomColors(count: 50, hue: .blue, luminosity: .dark)
     
     let realm = try! Realm()
     
@@ -15,6 +19,12 @@ class ToDoListController: UITableViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+        title = selectedCategory?.categoryName
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.barTintColor = UIColor(hexString: selectedCategory?.categoryColor ?? "#2980b9")
     }
     
     //MARK: - Save and Retrieving Data to Plist
@@ -43,11 +53,31 @@ class ToDoListController: UITableViewController{
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
         let item = items?[indexPath.row]
+        
+        // Set cell text
         cell.textLabel?.text = item?.itemName ?? "No Items Added Yet"
         cell.accessoryType = (item?.isCompleted == true) ? .checkmark : .none
-        return cell
         
+        // Set background color
+        let backgroundColor = UIColor(hexString: darkPinkColors[indexPath.row].hexValue())
+        cell.backgroundColor = backgroundColor
+        
+        // Set text color
+        cell.textLabel?.textColor = textColor(for: backgroundColor ?? .white)
+        
+        return cell
     }
+
+    
+    func textColor(for backgroundColor: UIColor) -> UIColor {
+        var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0
+        backgroundColor.getRed(&r, green: &g, blue: &b, alpha: nil)
+        
+        // Calculate luminance
+        let luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b
+        return luminance < 0.5 ? .white : .black
+    }
+
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -128,7 +158,7 @@ class ToDoListController: UITableViewController{
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return 50
+        return 65
     }
     
     
@@ -195,6 +225,5 @@ extension ToDoListController: UISearchBarDelegate {
         }
     }
 }
-
 
 

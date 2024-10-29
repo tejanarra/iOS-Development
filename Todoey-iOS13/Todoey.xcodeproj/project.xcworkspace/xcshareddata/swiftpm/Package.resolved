@@ -1,6 +1,24 @@
 {
-  "originHash" : "182db11c87d1734fe53a6366b674339f70901a93290bd85def29b63e25e34c43",
+  "originHash" : "4b0ae49c6e3e1f4feb29b1ae018c79a7819d13c69ed3c5e00525c705d409a33e",
   "pins" : [
+    {
+      "identity" : "coolcolourlibrary",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/richard243/CoolColourLibrary.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "80de9b8afe3b0656b2133f3b9bc9bc8d52cf4d0f"
+      }
+    },
+    {
+      "identity" : "randomcolorswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/onevcat/RandomColorSwift.git",
+      "state" : {
+        "revision" : "ab01c6eff99f40c5e23ffcb957eb3971f937f106",
+        "version" : "2.0.0"
+      }
+    },
     {
       "identity" : "realm-core",
       "kind" : "remoteSourceControl",

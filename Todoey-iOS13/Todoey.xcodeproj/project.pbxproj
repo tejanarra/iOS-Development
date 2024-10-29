@@ -3,10 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB38C1312CCC4535000DECE4 /* CoolColourLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = AB38C1302CCC4535000DECE4 /* CoolColourLibrary */; };
+		AB38C1342CCC4F10000DECE4 /* RandomColor in Frameworks */ = {isa = PBXBuildFile; productRef = AB38C1332CCC4F10000DECE4 /* RandomColor */; };
+		AB4903F32CCC408800B2900D /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4903ED2CCC408800B2900D /* Category.swift */; };
+		AB4903F42CCC408800B2900D /* CustomCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4903EE2CCC408800B2900D /* CustomCategoryCell.swift */; };
+		AB4903F52CCC408800B2900D /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4903EF2CCC408800B2900D /* Item.swift */; };
+		AB4903F62CCC408800B2900D /* Item.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB4903F02CCC408800B2900D /* Item.xcdatamodeld */; };
 		AB7F91A52CCC0C0C0083B5B9 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = ABFF83B82CCB5E720033472B /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		ABFE442C2CCB3509003E563D /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFE442B2CCB3509003E563D /* CategoryViewController.swift */; };
 		ABFF83B92CCB5E720033472B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = ABFF83B82CCB5E720033472B /* RealmSwift */; };
@@ -32,6 +38,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AB4903ED2CCC408800B2900D /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		AB4903EE2CCC408800B2900D /* CustomCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCategoryCell.swift; sourceTree = "<group>"; };
+		AB4903EF2CCC408800B2900D /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		AB4903F22CCC408800B2900D /* Item.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Item.xcdatamodel; sourceTree = "<group>"; };
 		ABFE442B2CCB3509003E563D /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		EB2BE4F6239524DB00FB933B /* Todoey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todoey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB2BE4F9239524DB00FB933B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -42,22 +52,31 @@
 		EB2BE507239524DC00FB933B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		ABA779EA2CC9BA1E005DDCF2 /* Model */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Model; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
-
 /* Begin PBXFrameworksBuildPhase section */
 		EB2BE4F3239524DB00FB933B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB38C1342CCC4F10000DECE4 /* RandomColor in Frameworks */,
 				ABFF83B92CCB5E720033472B /* RealmSwift in Frameworks */,
+				AB38C1312CCC4535000DECE4 /* CoolColourLibrary in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB4903F12CCC408800B2900D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AB4903ED2CCC408800B2900D /* Category.swift */,
+				AB4903EE2CCC408800B2900D /* CustomCategoryCell.swift */,
+				AB4903EF2CCC408800B2900D /* Item.swift */,
+				AB4903F02CCC408800B2900D /* Item.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		ABA779ED2CC9D175005DDCF2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -96,7 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				EB2BE4F9239524DB00FB933B /* AppDelegate.swift */,
-				ABA779EA2CC9BA1E005DDCF2 /* Model */,
+				AB4903F12CCC408800B2900D /* Model */,
 				ABA779EE2CC9D185005DDCF2 /* Controllers */,
 				ABA779ED2CC9D175005DDCF2 /* Views */,
 				EB2BE502239524DC00FB933B /* Assets.xcassets */,
@@ -120,9 +139,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				ABA779EA2CC9BA1E005DDCF2 /* Model */,
 			);
 			name = Todoey;
 			productName = Todoey;
@@ -155,6 +171,8 @@
 			mainGroup = EB2BE4ED239524DB00FB933B;
 			packageReferences = (
 				ABFF83B72CCB5E720033472B /* XCRemoteSwiftPackageReference "realm-swift" */,
+				AB38C12F2CCC4535000DECE4 /* XCRemoteSwiftPackageReference "CoolColourLibrary" */,
+				AB38C1322CCC4F10000DECE4 /* XCRemoteSwiftPackageReference "RandomColorSwift" */,
 			);
 			productRefGroup = EB2BE4F7239524DB00FB933B /* Products */;
 			projectDirPath = "";
@@ -186,6 +204,10 @@
 				ABFE442C2CCB3509003E563D /* CategoryViewController.swift in Sources */,
 				EB2BE4FE239524DB00FB933B /* ToDoListController.swift in Sources */,
 				EB2BE4FA239524DB00FB933B /* AppDelegate.swift in Sources */,
+				AB4903F32CCC408800B2900D /* Category.swift in Sources */,
+				AB4903F42CCC408800B2900D /* CustomCategoryCell.swift in Sources */,
+				AB4903F52CCC408800B2900D /* Item.swift in Sources */,
+				AB4903F62CCC408800B2900D /* Item.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,7 +354,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7LZNC77VC3;
 				INFOPLIST_FILE = Todoey/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -351,7 +373,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7LZNC77VC3;
 				INFOPLIST_FILE = Todoey/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -387,6 +409,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		AB38C12F2CCC4535000DECE4 /* XCRemoteSwiftPackageReference "CoolColourLibrary" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/richard243/CoolColourLibrary.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		AB38C1322CCC4F10000DECE4 /* XCRemoteSwiftPackageReference "RandomColorSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/RandomColorSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		ABFF83B72CCB5E720033472B /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
@@ -398,12 +436,35 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		AB38C1302CCC4535000DECE4 /* CoolColourLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AB38C12F2CCC4535000DECE4 /* XCRemoteSwiftPackageReference "CoolColourLibrary" */;
+			productName = CoolColourLibrary;
+		};
+		AB38C1332CCC4F10000DECE4 /* RandomColor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AB38C1322CCC4F10000DECE4 /* XCRemoteSwiftPackageReference "RandomColorSwift" */;
+			productName = RandomColor;
+		};
 		ABFF83B82CCB5E720033472B /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = ABFF83B72CCB5E720033472B /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		AB4903F02CCC408800B2900D /* Item.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				AB4903F22CCC408800B2900D /* Item.xcdatamodel */,
+			);
+			currentVersion = AB4903F22CCC408800B2900D /* Item.xcdatamodel */;
+			path = Item.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = EB2BE4EE239524DB00FB933B /* Project object */;
 }

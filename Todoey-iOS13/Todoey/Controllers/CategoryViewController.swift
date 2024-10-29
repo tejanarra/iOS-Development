@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import CoolColourLibrary
 
 class CategoryViewController: UITableViewController {
     
@@ -17,6 +18,7 @@ class CategoryViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
+        tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,7 +40,6 @@ class CategoryViewController: UITableViewController {
                 if !text.isEmpty {
                     let newCategory = Category()
                     newCategory.categoryName = text
-                    
                     save(category: newCategory)
                     loadData()
                     
@@ -83,6 +84,7 @@ class CategoryViewController: UITableViewController {
         //        cell.textLabel?.text = "\(category?.categoryName ?? "No Category") (\(count))"
         cell.name.text = category?.categoryName ?? "No Category"
         cell.count.text = "\(count)"
+        cell.backgroundColor = UIColor(hexString: category?.categoryColor ?? "#3498db")
         return cell
     }
     
